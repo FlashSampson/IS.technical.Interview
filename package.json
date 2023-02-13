@@ -1,0 +1,19 @@
+{
+  "name": "is.technical.interview",
+  "version": "1.0.0",
+  "description": "Technical interview questions ",
+  "main": "codingTask2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlashSampson/<ISTechnical.Interview>.git"
+  },
+  "author": "Keita Darby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlashSampson/<ISTechnical.Interview>/issues"
+  },
+  "homepage": "https://github.com/FlashSampson/<ISTechnical.Interview>#readme"
+}
