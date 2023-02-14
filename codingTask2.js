@@ -11,39 +11,31 @@ extractFirstName(encodedString);
 const crypto = require("crypto");
 const alphabet = "JKLMABCOPQRSTUVWXYZ013GHIN4789";
 const targetHash = "0b6af89dfb57f2b48743b12a67eedcdb";
+const results = [];
+const chars = alphabet.split("");
 
-function permutations(alphabet, n) {
-  const results = [];
-  const chars = alphabet.split("");
 
-  function backtrack(temp, chars) {
-    if (temp.length === n) {
-      results.push(temp.slice());
-    } else {
-      for (let i = 0; i < chars.length; i++) {
-        temp.push(chars[i]);
-        backtrack(temp, chars.slice(0, i).concat(chars.slice(i + 1)));
-        temp.pop();
-      }
+function backtrack(temp, chars) {
+  if (temp.length === 3) {
+    results.push(temp.slice());
+  } else {
+    for (let i = 0; i < chars.length; i++) {
+      temp.push(chars[i]);
+      backtrack(temp, chars.slice(0, i).concat(chars.slice(i + 1)));
+      temp.pop();
     }
   }
-
+  return results
+  }
   backtrack([], chars);
-  return results;
-}
 
-function calculateMD5(str) {
-  return crypto.createHash("md5").update(str).digest("hex");
-}
+  function calculateMD5(str) {
+    return crypto.createHash("md5").update(str).digest("hex");
+  }
 
-for (let i = 3; i <= alphabet.length; i++) {
-  const permutationsList = permutations(alphabet, i);
-  permutationsList.forEach((permutation) => {
-
+  for (const permutation of results) {
     const hash = calculateMD5(permutation.join(""));
     if (hash === targetHash) {
-      const password = ` ${permutation.join("")}`
-      console.log(password);
+   console.log(` ${permutation.join("")}`);
     }
-  });
-}
+  }
