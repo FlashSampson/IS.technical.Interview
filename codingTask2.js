@@ -1,5 +1,5 @@
 const extractFirstName = (str) => {
-  const decodedString = JSON.parse(atob(encodedString));
+  const decodedString = JSON.parse(Buffer.from(encodedString, 'Base64'));
   const name = `${decodedString.firstName} ${decodedString.lastName}`;
   console.log(name);
 };
@@ -39,9 +39,11 @@ function calculateMD5(str) {
 for (let i = 3; i <= alphabet.length; i++) {
   const permutationsList = permutations(alphabet, i);
   permutationsList.forEach((permutation) => {
+
     const hash = calculateMD5(permutation.join(""));
     if (hash === targetHash) {
-      console.log(` ${permutation.join("")}`);
+      const password = ` ${permutation.join("")}`
+      console.log(password);
     }
   });
 }
